@@ -1,0 +1,6 @@
+{
+  "name": "Kathmandu Dash — Balen Runner",
+  "description": "A 3D Subway Surfer style endless runner set in traditional Kathmandu heritage streets starring Nepali PM Balen Shah.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

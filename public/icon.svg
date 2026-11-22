@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#16120F"/>
+  <circle cx="256" cy="256" r="200" fill="#2A1C16"/>
+  <!-- Gold Mohar Sun Ring -->
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#F5B82E" stroke-width="10"/>
+  <!-- Dhaka Topi -->
+  <path d="M148 210 L172 126 Q256 108 340 126 L364 210 Z" fill="#9E1B22"/>
+  <path d="M148 192 L364 192 L368 214 L144 214 Z" fill="#18171A"/>
+  <path d="M192 162 L216 136 L240 162 L216 188 Z" fill="#F5EEDC"/>
+  <path d="M236 162 L260 136 L284 162 L260 188 Z" fill="#F5B82E"/>
+  <path d="M280 162 L304 136 L328 162 L304 188 Z" fill="#F5EEDC"/>
+  <!-- Face & Beard -->
+  <rect x="172" y="214" width="168" height="148" rx="34" fill="#C98E67"/>
+  <path d="M172 292 Q256 320 340 292 L340 338 Q256 382 172 338 Z" fill="#161414"/>
+  <!-- Signature Dark Rectangular Sunglasses -->
+  <rect x="164" y="238" width="184" height="14" rx="6" fill="#111114"/>
+  <rect x="174" y="244" width="74" height="44" rx="10" fill="#0B0E14" stroke="#F5B82E" stroke-width="3"/>
+  <rect x="264" y="244" width="74" height="44" rx="10" fill="#0B0E14" stroke="#F5B82E" stroke-width="3"/>
+  <!-- Collar -->
+  <path d="M168 380 L256 416 L344 380 L368 424 L144 424 Z" fill="#DC143C"/>
+</svg>

@@ -6,7 +6,10 @@ import {defineConfig} from 'vite';
 import {VitePWA} from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
-  const base = process.env.VITE_BASE_PATH || '/';
+  const [ghOwner, ghRepo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const autoGhBase =
+    ghRepo && ghRepo !== `${ghOwner}.github.io` ? `/${ghRepo}/` : '/';
+  const base = process.env.VITE_BASE_PATH || autoGhBase;
   return {
     base,
     plugins: [

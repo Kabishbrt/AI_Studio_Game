@@ -27,21 +27,29 @@ export default function App() {
 
   const [hud, setHud] = useState<GameHudState>(INITIAL_HUD);
   const [contextLost, setContextLost] = useState(false);
+  const [webglError, setWebglError] = useState<string | null>(null);
 
   // Mount Three.js engine once in isolated container
   useEffect(() => {
     const mount = canvasMountRef.current;
     if (!mount) return;
 
-    const engine = new NepaliRunnerEngine(
-      mount,
-      (nextState) => setHud(nextState),
-      (lost) => setContextLost(lost)
-    );
-    engineRef.current = engine;
+    let engine: NepaliRunnerEngine | null = null;
+    try {
+      engine = new NepaliRunnerEngine(
+        mount,
+        (nextState) => setHud(nextState),
+        (lost) => setContextLost(lost)
+      );
+      engineRef.current = engine;
+    } catch (err) {
+      setWebglError(
+        err instanceof Error ? err.message : '3D WebGL rendering is unavailable on this device.'
+      );
+    }
 
     return () => {
-      engine.dispose();
+      engine?.dispose();
       engineRef.current = null;
     };
   }, []);
@@ -138,18 +146,28 @@ export default function App() {
       {/* Dedicated isolated WebGL canvas container */}
       <div ref={canvasMountRef} className="h-full w-full" />
 
-      {/* Semantic HUD & Menu Overlay */}
-      <GameOverlay
-        hud={hud}
-        contextLost={contextLost}
-        onStart={handleStart}
-        onPause={handlePause}
-        onResume={handleResume}
-        onMenu={handleMenu}
-        onOutfitChange={handleOutfitChange}
-        onToggleMute={handleToggleMute}
-        onTouchAction={handleTouchAction}
-      />
+      {webglError ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#12100E] p-6">
+          <div className="max-w-md rounded-2xl border border-[#E8D8C3]/20 bg-[#16120F] p-6 text-center shadow-2xl">
+            <h1 className="font-display text-2xl font-bold text-[#FFF8EE]">Kathmandu Dash</h1>
+            <p className="mt-2 text-sm text-[#D4C7B4]">
+              Unable to start 3D graphics in this browser ({webglError}). Try enabling hardware acceleration or opening in Chrome or Safari.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <GameOverlay
+          hud={hud}
+          contextLost={contextLost}
+          onStart={handleStart}
+          onPause={handlePause}
+          onResume={handleResume}
+          onMenu={handleMenu}
+          onOutfitChange={handleOutfitChange}
+          onToggleMute={handleToggleMute}
+          onTouchAction={handleTouchAction}
+        />
+      )}
     </div>
   );
 }
